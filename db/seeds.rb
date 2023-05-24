@@ -5,3 +5,24 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+require 'faker'
+
+# Clear existing restaurant records
+Restaurant.destroy_all
+
+# Generate 100 restaurant records
+100.times do
+  name = Faker::Restaurant.name
+  address = Faker::Address.full_address
+  phone_number = Faker::PhoneNumber.phone_number
+  category = ["chinese", "italian", "japanese", "french", "belgian"]
+
+  Restaurant.create!(
+    name: name,
+    address: address,
+    phone_number: phone_number,
+    category: category.sample
+  )
+end
+
+puts 'Seed completed!'
